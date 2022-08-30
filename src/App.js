@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
+  const reyesGodos=[
+    {
+      nombre: "Ataúlfo",
+      aficion: "comer toros sin pelar"
+    },{
+      nombre: "Recesvinto",
+      aficion: "leer a Hegel en arameo"
+    },{
+      nombre: "Teodorico",
+      aficion: "la cría del escarabajo en almíbar"
+    }
+  ]  
+  const [contador, setContador] = useState(0);
+  const [mensaje, setMensaje] = useState();
+  const cambio = () =>{
+    setContador(contador+1);
+    if(contador>=reyesGodos.length){
+      setContador(0);
+    }
+    setMensaje(<h2>La afición principal de <span className='rojo'>{reyesGodos[contador].nombre}</span> es <span className='verde'>{reyesGodos[contador].aficion}</span></h2>)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={cambio}>Ver siguiente</button>
+      <div>{mensaje}</div>
     </div>
   );
 }
